@@ -1,0 +1,9 @@
+htdocs/config/config.php
+htdocs/config/database.php
+htdocs/config/email_config.php
+htdocs/logs/
+htdocs/staff/logs/
+htdocs/staff/ajax/logs/
+htdocs/students/logs/
+htdocs/uploads/
+.vscode/

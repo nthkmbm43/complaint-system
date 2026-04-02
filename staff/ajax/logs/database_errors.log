@@ -1,0 +1,883 @@
+2025-09-08 12:43:43 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_status = :Stu_status, updated_at = :updated_at, Stu_suspend_reason = :Stu_suspend_reason, Stu_suspend_date = :Stu_suspend_date WHERE Stu_id = ?
+Params: {"Stu_status":0,"updated_at":"2025-09-08 12:43:43","Stu_suspend_reason":"\u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a","Stu_suspend_date":"2025-09-08 12:43:43","0":"6634231009222"}
+
+2025-09-08 13:48:09 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.category' doesn't exist
+SQL: 
+        SELECT r.Re_id, r.Re_title, r.Re_detail, r.Re_date, r.Re_status,
+               c.Category_name, c.Category_icon,
+               p.Priority_name, p.Priority_color
+        FROM request r
+        LEFT JOIN category c ON r.Category_id = c.Category_id
+        LEFT JOIN priority p ON r.Priority_id = p.Priority_id
+        WHERE r.Stu_id = ?
+        ORDER BY r.Re_date DESC
+        LIMIT 5
+    
+Params: ["66342310051-0"]
+
+2025-09-08 13:48:14 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.category' doesn't exist
+SQL: 
+        SELECT r.Re_id, r.Re_title, r.Re_detail, r.Re_date, r.Re_status,
+               c.Category_name, c.Category_icon,
+               p.Priority_name, p.Priority_color
+        FROM request r
+        LEFT JOIN category c ON r.Category_id = c.Category_id
+        LEFT JOIN priority p ON r.Priority_id = p.Priority_id
+        WHERE r.Stu_id = ?
+        ORDER BY r.Re_date DESC
+        LIMIT 5
+    
+Params: ["66342310051-0"]
+
+2025-09-08 14:07:12 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_name = :Stu_name, Unit_id = :Unit_id, Stu_tel = :Stu_tel, Stu_email = :Stu_email, updated_at = :updated_at WHERE Stu_id = ?
+Params: {"Stu_name":"\u0e19\u0e32\u0e22\u0e18\u0e19\u0e01\u0e24\u0e15 \u0e2b\u0e21\u0e39\u0e48\u0e1a\u0e49\u0e32\u0e19\u0e21\u0e48\u0e27\u0e07","Unit_id":9,"Stu_tel":"0949099502","Stu_email":"thanakrit.mu@rmuti.ac.th","updated_at":"2025-09-08 14:07:12","0":"66342310092-2"}
+
+2025-09-08 14:14:40 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_name = :Stu_name, Unit_id = :Unit_id, Stu_tel = :Stu_tel, Stu_email = :Stu_email, updated_at = :updated_at WHERE Stu_id = ?
+Params: {"Stu_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a1","Unit_id":26,"Stu_tel":"0999499534","Stu_email":"test@rmuti.ac.th","updated_at":"2025-09-08 14:14:40","0":"6634231009222"}
+
+2025-09-08 14:24:21 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_status = :Stu_status, updated_at = :updated_at, Stu_suspend_reason = :Stu_suspend_reason, Stu_suspend_date = :Stu_suspend_date WHERE Stu_id = ?
+Params: {"Stu_status":0,"updated_at":"2025-09-08 14:24:21","Stu_suspend_reason":"\u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a","Stu_suspend_date":"2025-09-08 14:24:21","0":"6634231009222"}
+
+2025-09-08 15:22:29 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_name = :Stu_name, Unit_id = :Unit_id, Stu_tel = :Stu_tel, Stu_email = :Stu_email, updated_at = :updated_at WHERE Stu_id = ?
+Params: {"Stu_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a1","Unit_id":26,"Stu_tel":"0999499534","Stu_email":"test@rmuti.ac.th","updated_at":"2025-09-08 15:22:29","0":"6634231009222"}
+
+2025-09-08 16:02:39 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Stu_id' in 'where clause'
+SQL: SELECT * FROM suspend_history WHERE Stu_id = ? ORDER BY created_at DESC
+Params: ["66342310051-0"]
+
+2025-09-08 16:05:40 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_name = :Stu_name, Unit_id = :Unit_id, Stu_tel = :Stu_tel, Stu_email = :Stu_email, updated_at = :updated_at WHERE Stu_id = ?
+Params: {"Stu_name":"\u0e2a\u0e21\u0e0a\u0e32\u0e22 \u0e27\u0e07\u0e28\u0e4c\u0e43\u0e2b\u0e0d\u0e48","Unit_id":12,"Stu_tel":"099-949-9534","Stu_email":"test@rmuti.ac.th","updated_at":"2025-09-08 16:05:40","0":"66342310051-0"}
+
+2025-09-08 17:07:07 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_name = :Stu_name, Unit_id = :Unit_id, Stu_tel = :Stu_tel, Stu_email = :Stu_email, updated_at = :updated_at WHERE Stu_id = ?
+Params: {"Stu_name":"\u0e19\u0e32\u0e22\u0e18\u0e19\u0e01\u0e24\u0e15 \u0e2b\u0e21\u0e39\u0e48\u0e1a\u0e49\u0e32\u0e19\u0e21\u0e48\u0e27\u0e071","Unit_id":11,"Stu_tel":"0949099502","Stu_email":"thanakrit.mu@rmuti.ac.th","updated_at":"2025-09-08 17:07:07","0":"66342310092-2"}
+
+2025-09-08 17:07:17 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_name = :Stu_name, Unit_id = :Unit_id, Stu_tel = :Stu_tel, Stu_email = :Stu_email, updated_at = :updated_at WHERE Stu_id = ?
+Params: {"Stu_name":"\u0e19\u0e32\u0e22\u0e18\u0e19\u0e01\u0e24\u0e15 \u0e2b\u0e21\u0e39\u0e48\u0e1a\u0e49\u0e32\u0e19\u0e21\u0e48\u0e27\u0e071","Unit_id":11,"Stu_tel":"0949099502","Stu_email":"thanakrit.mu@rmuti.ac.th","updated_at":"2025-09-08 17:07:17","0":"66342310092-2"}
+
+2025-09-08 17:08:23 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_status = :Stu_status, updated_at = :updated_at, Stu_suspend_reason = :Stu_suspend_reason, Stu_suspend_date = :Stu_suspend_date WHERE Stu_id = ?
+Params: {"Stu_status":0,"updated_at":"2025-09-08 17:08:23","Stu_suspend_reason":"\u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a","Stu_suspend_date":"2025-09-08 17:08:23","0":"66342310092-2"}
+
+2025-09-08 17:13:49 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Stu_id' in 'field list'
+SQL: INSERT INTO suspend_history (Stu_id, Sh_suspend_date, Sh_reason, Sh_suspend_by) VALUES (?, ?, ?, ?)
+Params: ["66342310092-2","2025-09-08 17:13:49","\u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a",3]
+
+2025-09-10 11:03:56 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Aj_department' in 'field list'
+SQL: 
+        SELECT Aj_id, Aj_name, Aj_position, Aj_per, Aj_department
+        FROM teacher 
+        WHERE Aj_status = 1 
+        ORDER BY Aj_per DESC, Aj_name ASC
+    
+Params: []
+
+2025-09-10 11:04:00 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Aj_department' in 'field list'
+SQL: 
+        SELECT Aj_id, Aj_name, Aj_position, Aj_per, Aj_department
+        FROM teacher 
+        WHERE Aj_status = 1 
+        ORDER BY Aj_per DESC, Aj_name ASC
+    
+Params: []
+
+2025-09-10 11:04:19 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Aj_department' in 'field list'
+SQL: 
+        SELECT Aj_id, Aj_name, Aj_position, Aj_per, Aj_department
+        FROM teacher 
+        WHERE Aj_status = 1 
+        ORDER BY Aj_per DESC, Aj_name ASC
+    
+Params: []
+
+2025-09-10 11:08:42 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Aj_department' in 'field list'
+SQL: 
+        SELECT Aj_id, Aj_name, Aj_position, Aj_per, Aj_department
+        FROM teacher 
+        WHERE Aj_status = 1 
+        ORDER BY Aj_per DESC, Aj_name ASC
+    
+Params: []
+
+2025-09-10 11:11:23 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Aj_department' in 'field list'
+SQL: 
+        SELECT Aj_id, Aj_name, Unit_id, Aj_per, Aj_department
+        FROM teacher 
+        WHERE Aj_status = 1 
+        ORDER BY Aj_per DESC, Aj_name ASC
+    
+Params: []
+
+2025-09-25 17:11:13 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 't.Type_status' in 'where clause'
+SQL: 
+            SELECT 
+                t.Type_infor as category_name,
+                COUNT(r.Re_id) as count,
+                COALESCE(AVG(e.Eva_score), 0) as avg_rating
+            FROM type t
+            LEFT JOIN request r ON t.Type_id = r.Type_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            WHERE t.Type_status = 'active'
+            GROUP BY t.Type_id, t.Type_infor
+            HAVING count > 0
+            ORDER BY count DESC
+        
+Params: []
+
+2025-09-25 17:11:13 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_topic' in 'field list'
+SQL: 
+            SELECT 
+                CONCAT('REQ-', LPAD(r.Re_id, 6, '0')) as id,
+                r.Re_topic as title,
+                r.created_at as date,
+                t.Type_infor as type,
+                CASE r.Re_iden 
+                    WHEN 1 THEN 'ไม่ระบุตัวตน'
+                    ELSE COALESCE(s.Stu_name, 'ไม่ระบุ')
+                END as sender,
+                COALESCE(s.Stu_tel, '') as sender_contact,
+                COALESCE(s.Stu_email, '') as sender_email,
+                CASE r.Re_level
+                    WHEN 1 THEN 'low'
+                    WHEN 2 THEN 'medium'
+                    WHEN 3 THEN 'high'
+                    WHEN 4 THEN 'urgent'
+                    ELSE 'medium'
+                END as priority,
+                CASE 
+                    WHEN r.Re_status = 'received' THEN 'pending'
+                    WHEN r.Re_status = 'processing' THEN 'processing'
+                    WHEN r.Re_status = 'completed' THEN 'completed'
+                    WHEN r.Re_status = 'evaluated' THEN 'evaluated'
+                    ELSE 'pending'
+                END as status,
+                COALESCE(aj.Aj_name, '') as staff,
+                e.Eva_score as rating,
+                r.Re_infor as description,
+                r.Re_location as location,
+                sr.Sv_infor as response_message,
+                sr.created_at as response_date,
+                rr.Result_infor as solution,
+                e.Eva_sug as evaluation_comment,
+                CASE 
+                    WHEN sr.created_at IS NOT NULL 
+                    THEN TIMESTAMPDIFF(HOUR, r.created_at, sr.created_at)
+                    ELSE NULL 
+                END as response_hours
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id AND r.Re_iden = 0
+            LEFT JOIN teacher aj ON r.Re_assign_to = aj.Aj_id
+            LEFT JOIN save_request sr ON r.Re_id = sr.Re_id
+            LEFT JOIN result_request rr ON sr.Sv_id = rr.Sv_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            WHERE r.created_at >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+            ORDER BY r.created_at DESC
+            LIMIT 20
+        
+Params: []
+
+2025-09-25 17:11:13 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 't.Type_status' in 'where clause'
+SQL: 
+            SELECT 
+                t.Type_infor as category_name,
+                COUNT(r.Re_id) as count,
+                COALESCE(AVG(e.Eva_score), 0) as avg_rating
+            FROM type t
+            LEFT JOIN request r ON t.Type_id = r.Type_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            WHERE t.Type_status = 'active'
+            GROUP BY t.Type_id, t.Type_infor
+            HAVING count > 0
+            ORDER BY count DESC
+        
+Params: []
+
+2025-09-25 17:11:13 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_topic' in 'field list'
+SQL: 
+            SELECT 
+                CONCAT('REQ-', LPAD(r.Re_id, 6, '0')) as id,
+                r.Re_topic as title,
+                r.created_at as date,
+                t.Type_infor as type,
+                CASE r.Re_iden 
+                    WHEN 1 THEN 'ไม่ระบุตัวตน'
+                    ELSE COALESCE(s.Stu_name, 'ไม่ระบุ')
+                END as sender,
+                COALESCE(s.Stu_tel, '') as sender_contact,
+                COALESCE(s.Stu_email, '') as sender_email,
+                CASE r.Re_level
+                    WHEN 1 THEN 'low'
+                    WHEN 2 THEN 'medium'
+                    WHEN 3 THEN 'high'
+                    WHEN 4 THEN 'urgent'
+                    ELSE 'medium'
+                END as priority,
+                CASE 
+                    WHEN r.Re_status = 'received' THEN 'pending'
+                    WHEN r.Re_status = 'processing' THEN 'processing'
+                    WHEN r.Re_status = 'completed' THEN 'completed'
+                    WHEN r.Re_status = 'evaluated' THEN 'evaluated'
+                    ELSE 'pending'
+                END as status,
+                COALESCE(aj.Aj_name, '') as staff,
+                e.Eva_score as rating,
+                r.Re_infor as description,
+                r.Re_location as location,
+                sr.Sv_infor as response_message,
+                sr.created_at as response_date,
+                rr.Result_infor as solution,
+                e.Eva_sug as evaluation_comment,
+                CASE 
+                    WHEN sr.created_at IS NOT NULL 
+                    THEN TIMESTAMPDIFF(HOUR, r.created_at, sr.created_at)
+                    ELSE NULL 
+                END as response_hours
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id AND r.Re_iden = 0
+            LEFT JOIN teacher aj ON r.Re_assign_to = aj.Aj_id
+            LEFT JOIN save_request sr ON r.Re_id = sr.Re_id
+            LEFT JOIN result_request rr ON sr.Sv_id = rr.Sv_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            WHERE r.created_at >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+            ORDER BY r.created_at DESC
+            LIMIT 20
+        
+Params: []
+
+2025-09-26 17:43:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+            
+Params: ["000004"]
+
+2025-09-26 17:45:16 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+            
+Params: ["000001"]
+
+2025-09-26 17:45:22 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+            
+Params: ["000004"]
+
+2025-09-26 17:46:20 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+            
+Params: ["000004"]
+
+2025-09-26 17:46:25 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+            
+Params: ["000001"]
+
+2025-09-26 17:46:30 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+            
+Params: ["000001"]
+
+2025-09-26 17:49:21 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+                ORDER BY Se_id
+            
+Params: ["4"]
+
+2025-09-26 18:01:29 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+                ORDER BY Se_id
+            
+Params: ["4"]
+
+2025-09-26 18:03:27 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Se_name' in 'field list'
+SQL: 
+                SELECT Se_name 
+                FROM supporting_evidence 
+                WHERE Re_id = ? AND Se_type = 'image'
+                ORDER BY Se_id
+            
+Params: ["4"]
+
+2025-12-02 14:04:11 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'Aj_id' cannot be null
+SQL: INSERT INTO save_request (Sv_infor, Sv_type, Sv_note, Sv_date, Re_id, Aj_id) 
+                 VALUES (?, 'reject', ?, CURDATE(), ?, ?)
+Params: ["\u0e17\u0e14\u0e2a\u0e2d\u0e1a\u0e23\u0e30\u0e1a\u0e1a","\u0e04\u0e33\u0e0a\u0e35\u0e49\u0e41\u0e19\u0e30: \u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a\u0e01\u0e32\u0e23\u0e41\u0e08\u0e49\u0e07\u0e40\u0e15\u0e37\u0e2d\u0e19\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e40\u0e21\u0e25\u0e4c\n\u0e14\u0e33\u0e40\u0e19\u0e34\u0e19\u0e01\u0e32\u0e23\u0e42\u0e14\u0e22: ",55,null]
+
+2025-12-02 14:08:01 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'Aj_id' cannot be null
+SQL: INSERT INTO save_request (Sv_infor, Sv_type, Sv_note, Sv_date, Re_id, Aj_id) 
+                 VALUES (?, 'reject', ?, CURDATE(), ?, ?)
+Params: ["\u0e1b\u0e0f\u0e34\u0e40\u0e2a\u0e18\u0e02\u0e49\u0e2d\u0e23\u0e49\u0e2d\u0e07\u0e40\u0e23\u0e35\u0e22\u0e19","\u0e17\u0e14\u0e25\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a\n\u0e04\u0e33\u0e0a\u0e35\u0e49\u0e41\u0e19\u0e30: \u0e17\u0e14\u0e2a\u0e2d\u0e1a\u0e23\u0e30\u0e1a\u0e1a\u0e43\u0e19\u0e01\u0e32\u0e23\u0e41\u0e08\u0e49\u0e07\u0e40\u0e15\u0e37\u0e2d\u0e19\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e40\u0e21\u0e25\n\u0e14\u0e33\u0e40\u0e19\u0e34\u0e19\u0e01\u0e32\u0e23\u0e42\u0e14\u0e22: ",55,null]
+
+2025-12-13 17:22:40 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_update' in 'field list'
+SQL: UPDATE request SET Re_status = '4', Re_update = NOW() WHERE Re_id = ?
+Params: [53]
+
+2025-12-14 13:55:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'SELECT'
+SQL: 
+        SELECT 
+            COUNT(*) as total_requests,
+            SUM(CASE WHEN Re_status = '0' THEN 1 ELSE 0 END) as pending_requests,
+            SUM(CASE WHEN Re_status = '1' THEN 1 ELSE 0 END) as confirmed_requests,
+            SUM(CASE WHEN Re_status = '2' THEN 1 ELSE 0 END) as processed_requests,
+            SUM(CASE WHEN Re_status = '3' THEN 1 ELSE 0 END) as completed_requests,
+            SUM(CASE WHEN Re_is_spam = 1 THEN 1 ELSE 0 END) as spam_requests
+        FROM request 
+        WHERE Stu_id = ?
+    
+Params: ["67342310267-4"]
+
+2025-12-14 13:55:46 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'SELECT'
+SQL: 
+        SELECT 
+            COUNT(*) as total_requests,
+            SUM(CASE WHEN Re_status = '0' THEN 1 ELSE 0 END) as pending_requests,
+            SUM(CASE WHEN Re_status = '1' THEN 1 ELSE 0 END) as confirmed_requests,
+            SUM(CASE WHEN Re_status = '2' THEN 1 ELSE 0 END) as processed_requests,
+            SUM(CASE WHEN Re_status = '3' THEN 1 ELSE 0 END) as completed_requests,
+            SUM(CASE WHEN Re_is_spam = 1 THEN 1 ELSE 0 END) as spam_requests
+        FROM request 
+        WHERE Stu_id = ?
+    
+Params: ["67342310267-4"]
+
+2025-12-14 13:56:08 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'ORDER BY'
+SQL: 
+                SELECT r.Re_id, r.Re_title, r.Re_infor, r.Re_status, r.Re_date,
+                       t.Type_infor, t.Type_icon,
+                       s.Stu_name,
+                       CASE r.Re_status 
+                           WHEN '0' THEN 'ยื่นคำร้อง'
+                           WHEN '1' THEN 'กำลังดำเนินการ'
+                           WHEN '2' THEN 'รอการประเมินผล'
+                           WHEN '3' THEN 'เสร็จสิ้น'
+                           WHEN '4' THEN 'ปฏิเสธคำร้อง'
+                           ELSE 'ไม่ระบุ'
+                       END as status_text
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                WHERE r.Re_assign_to = ?
+                ORDER BY r.created_at DESC
+                LIMIT 5
+            
+Params: [59]
+
+2025-12-15 17:05:44 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'SELECT'
+SQL: 
+        SELECT 
+            COUNT(*) as total_requests,
+            SUM(CASE WHEN Re_status = '0' THEN 1 ELSE 0 END) as pending_requests,
+            SUM(CASE WHEN Re_status = '1' THEN 1 ELSE 0 END) as confirmed_requests,
+            SUM(CASE WHEN Re_status = '2' THEN 1 ELSE 0 END) as processed_requests,
+            SUM(CASE WHEN Re_status = '3' THEN 1 ELSE 0 END) as completed_requests,
+            SUM(CASE WHEN Re_is_spam = 1 THEN 1 ELSE 0 END) as spam_requests
+        FROM request 
+        WHERE Stu_id = ?
+    
+Params: ["67342310267-4"]
+
+2025-12-15 17:15:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'SELECT'
+SQL: 
+        SELECT 
+            COUNT(*) as total_requests,
+            SUM(CASE WHEN Re_status = '0' THEN 1 ELSE 0 END) as pending_requests,
+            SUM(CASE WHEN Re_status = '1' THEN 1 ELSE 0 END) as confirmed_requests,
+            SUM(CASE WHEN Re_status = '2' THEN 1 ELSE 0 END) as processed_requests,
+            SUM(CASE WHEN Re_status = '3' THEN 1 ELSE 0 END) as completed_requests,
+            SUM(CASE WHEN Re_is_spam = 1 THEN 1 ELSE 0 END) as spam_requests
+        FROM request 
+        WHERE Stu_id = ?
+    
+Params: ["67342310267-4"]
+
+2025-12-15 17:24:00 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'SELECT'
+SQL: 
+        SELECT 
+            COUNT(*) as total_requests,
+            SUM(CASE WHEN Re_status = '0' THEN 1 ELSE 0 END) as pending_requests,
+            SUM(CASE WHEN Re_status = '1' THEN 1 ELSE 0 END) as confirmed_requests,
+            SUM(CASE WHEN Re_status = '2' THEN 1 ELSE 0 END) as processed_requests,
+            SUM(CASE WHEN Re_status = '3' THEN 1 ELSE 0 END) as completed_requests,
+            SUM(CASE WHEN Re_is_spam = 1 THEN 1 ELSE 0 END) as spam_requests
+        FROM request 
+        WHERE Stu_id = ?
+    
+Params: ["67342310267-4"]
+
+2025-12-15 17:25:44 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'ORDER BY'
+SQL: 
+        SELECT r.Re_id, r.Re_title, r.Re_infor, r.Re_status, r.Re_level, r.Re_date,
+               t.Type_infor, t.Type_icon,
+               CASE r.Re_status 
+                   WHEN '0' THEN 'ยื่นคำร้อง'
+                        WHEN '1' THEN 'กำลังดำเนินการ'
+                        WHEN '2' THEN 'รอการประเมินผล'
+                        WHEN '3' THEN 'เสร็จสิ้น'
+                        WHEN '4' THEN 'ปฏิเสธคำร้อง'
+                   ELSE 'ไม่ระบุ'
+               END as status_text,
+               CASE r.Re_level
+                   WHEN '1' THEN 'ไม่เร่งด่วน'
+                   WHEN '2' THEN 'ปกติ'
+                   WHEN '3' THEN 'เร่งด่วน'
+                   WHEN '4' THEN 'เร่งด่วนมาก'
+                   WHEN '5' THEN 'วิกฤต/ฉุกเฉิน'
+                   ELSE 'ไม่ระบุ'
+               END as level_text
+        FROM request r
+        LEFT JOIN type t ON r.Type_id = t.Type_id
+        WHERE r.Stu_id = ?
+        ORDER BY r.created_at DESC
+        LIMIT 5
+    
+Params: ["67342310267-4"]
+
+2025-12-15 17:26:35 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'ORDER BY'
+SQL: 
+                SELECT r.Re_id, r.Re_title, r.Re_infor, r.Re_status, r.Re_date,
+                       t.Type_infor, t.Type_icon,
+                       s.Stu_name,
+                       CASE r.Re_status 
+                           WHEN '0' THEN 'ยื่นคำร้อง'
+                           WHEN '1' THEN 'กำลังดำเนินการ'
+                           WHEN '2' THEN 'รอการประเมินผล'
+                           WHEN '3' THEN 'เสร็จสิ้น'
+                           WHEN '4' THEN 'ปฏิเสธคำร้อง'
+                           ELSE 'ไม่ระบุ'
+                       END as status_text
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                WHERE r.Re_assign_to = ?
+                ORDER BY r.created_at DESC
+                LIMIT 5
+            
+Params: [59]
+
+2025-12-15 17:33:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'ORDER BY'
+SQL: 
+                SELECT r.Re_id, r.Re_title, r.Re_infor, r.Re_status, r.Re_date,
+                       t.Type_infor, t.Type_icon,
+                       s.Stu_name,
+                       CASE r.Re_status 
+                           WHEN '0' THEN 'ยื่นคำร้อง'
+                           WHEN '1' THEN 'กำลังดำเนินการ'
+                           WHEN '2' THEN 'รอการประเมินผล'
+                           WHEN '3' THEN 'เสร็จสิ้น'
+                           WHEN '4' THEN 'ปฏิเสธคำร้อง'
+                           ELSE 'ไม่ระบุ'
+                       END as status_text
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                WHERE r.Re_assign_to = ?
+                ORDER BY r.created_at DESC
+                LIMIT 5
+            
+Params: [59]
+
+2025-12-15 17:47:44 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                DATE_FORMAT(Re_date, '%Y-%m') as month,
+                COUNT(*) as total_requests,
+                COUNT(CASE WHEN Re_status IN ('2', '3') THEN 1 END) as completed_requests
+            FROM request 
+            WHERE Re_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND Re_is_spam = 0
+            GROUP BY DATE_FORMAT(Re_date, '%Y-%m')
+            ORDER BY month
+        
+Params: []
+
+2025-12-15 17:47:44 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 17:47:44 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'ON'
+SQL: 
+            SELECT 
+                t.Type_infor as name,
+                COUNT(r.Re_id) as count
+            FROM type t
+            LEFT JOIN request r ON t.Type_id = r.Type_id AND r.Re_is_spam = 0
+            GROUP BY t.Type_id, t.Type_infor
+            HAVING count > 0
+            ORDER BY count DESC
+            LIMIT 6
+        
+Params: []
+
+2025-12-15 17:47:44 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                r.Re_id,
+                r.Re_infor,
+                r.Re_date,
+                r.Re_level,
+                r.Re_status,
+                r.Re_iden,
+                t.Type_infor,
+                CASE 
+                    WHEN r.Re_iden = 1 THEN 'ไม่ระบุตัวตน'
+                    ELSE COALESCE(s.Stu_name, 'ไม่ระบุชื่อ')
+                END as sender_name,
+                COALESCE(aj.Aj_name, 'ยังไม่มอบหมาย') as staff_name,
+                e.Eva_score,
+                TIMESTAMPDIFF(HOUR, r.Re_date, COALESCE(sr.Sv_date, NOW())) as response_hours
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN teacher aj ON r.Re_assign_to = aj.Aj_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            LEFT JOIN save_request sr ON r.Re_id = sr.Re_id
+            WHERE r.Re_is_spam = 0
+            ORDER BY r.Re_date DESC
+            LIMIT 20
+        
+Params: []
+
+2025-12-15 17:47:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                DATE_FORMAT(Re_date, '%Y-%m') as month,
+                COUNT(*) as total_requests,
+                COUNT(CASE WHEN Re_status IN ('2', '3') THEN 1 END) as completed_requests
+            FROM request 
+            WHERE Re_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND Re_is_spam = 0
+            GROUP BY DATE_FORMAT(Re_date, '%Y-%m')
+            ORDER BY month
+        
+Params: []
+
+2025-12-15 17:47:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 17:47:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'ON'
+SQL: 
+            SELECT 
+                t.Type_infor as name,
+                COUNT(r.Re_id) as count
+            FROM type t
+            LEFT JOIN request r ON t.Type_id = r.Type_id AND r.Re_is_spam = 0
+            GROUP BY t.Type_id, t.Type_infor
+            HAVING count > 0
+            ORDER BY count DESC
+            LIMIT 6
+        
+Params: []
+
+2025-12-15 17:47:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                r.Re_id,
+                r.Re_infor,
+                r.Re_date,
+                r.Re_level,
+                r.Re_status,
+                r.Re_iden,
+                t.Type_infor,
+                CASE 
+                    WHEN r.Re_iden = 1 THEN 'ไม่ระบุตัวตน'
+                    ELSE COALESCE(s.Stu_name, 'ไม่ระบุชื่อ')
+                END as sender_name,
+                COALESCE(aj.Aj_name, 'ยังไม่มอบหมาย') as staff_name,
+                e.Eva_score,
+                TIMESTAMPDIFF(HOUR, r.Re_date, COALESCE(sr.Sv_date, NOW())) as response_hours
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN teacher aj ON r.Re_assign_to = aj.Aj_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            LEFT JOIN save_request sr ON r.Re_id = sr.Re_id
+            WHERE r.Re_is_spam = 0
+            ORDER BY r.Re_date DESC
+            LIMIT 20
+        
+Params: []
+
+2025-12-15 17:52:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 17:52:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                DATE_FORMAT(Re_date, '%Y-%m') as month,
+                COUNT(*) as total_requests,
+                COUNT(CASE WHEN Re_status IN ('2', '3') THEN 1 END) as completed_requests
+            FROM request 
+            WHERE Re_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND Re_is_spam = 0
+            GROUP BY DATE_FORMAT(Re_date, '%Y-%m')
+            ORDER BY month
+        
+Params: []
+
+2025-12-15 17:52:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'ON'
+SQL: 
+            SELECT 
+                t.Type_infor as name,
+                COUNT(r.Re_id) as count
+            FROM type t
+            LEFT JOIN request r ON t.Type_id = r.Type_id AND r.Re_is_spam = 0
+            GROUP BY t.Type_id, t.Type_infor
+            HAVING count > 0
+            ORDER BY count DESC
+            LIMIT 6
+        
+Params: []
+
+2025-12-15 17:52:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                r.Re_id,
+                r.Re_infor,
+                r.Re_date,
+                r.Re_level,
+                r.Re_status,
+                r.Re_iden,
+                t.Type_infor,
+                CASE 
+                    WHEN r.Re_iden = 1 THEN 'ไม่ระบุตัวตน'
+                    ELSE COALESCE(s.Stu_name, 'ไม่ระบุชื่อ')
+                END as sender_name,
+                COALESCE(aj.Aj_name, 'ยังไม่มอบหมาย') as staff_name,
+                e.Eva_score,
+                TIMESTAMPDIFF(HOUR, r.Re_date, COALESCE(sr.Sv_date, NOW())) as response_hours
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN teacher aj ON r.Re_assign_to = aj.Aj_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            LEFT JOIN save_request sr ON r.Re_id = sr.Re_id
+            WHERE r.Re_is_spam = 0
+            ORDER BY r.Re_date DESC
+            LIMIT 20
+        
+Params: []
+
+2025-12-15 17:57:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 17:57:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                DATE_FORMAT(Re_date, '%Y-%m') as month,
+                COUNT(*) as total_requests,
+                COUNT(CASE WHEN Re_status IN ('2', '3') THEN 1 END) as completed_requests
+            FROM request 
+            WHERE Re_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND Re_is_spam = 0
+            GROUP BY DATE_FORMAT(Re_date, '%Y-%m')
+            ORDER BY month
+        
+Params: []
+
+2025-12-15 17:57:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                r.Re_id,
+                r.Re_infor,
+                r.Re_date,
+                r.Re_level,
+                r.Re_status,
+                r.Re_iden,
+                t.Type_infor,
+                CASE 
+                    WHEN r.Re_iden = 1 THEN 'ไม่ระบุตัวตน'
+                    ELSE COALESCE(s.Stu_name, 'ไม่ระบุชื่อ')
+                END as sender_name,
+                COALESCE(aj.Aj_name, 'ยังไม่มอบหมาย') as staff_name,
+                e.Eva_score,
+                TIMESTAMPDIFF(HOUR, r.Re_date, COALESCE(sr.Sv_date, NOW())) as response_hours
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN teacher aj ON r.Re_assign_to = aj.Aj_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            LEFT JOIN save_request sr ON r.Re_id = sr.Re_id
+            WHERE r.Re_is_spam = 0
+            ORDER BY r.Re_date DESC
+            LIMIT 20
+        
+Params: []
+
+2025-12-15 17:57:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'ON'
+SQL: 
+            SELECT 
+                t.Type_infor as name,
+                COUNT(r.Re_id) as count
+            FROM type t
+            LEFT JOIN request r ON t.Type_id = r.Type_id AND r.Re_is_spam = 0
+            GROUP BY t.Type_id, t.Type_infor
+            HAVING count > 0
+            ORDER BY count DESC
+            LIMIT 6
+        
+Params: []
+
+2025-12-15 18:02:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'ON'
+SQL: 
+            SELECT 
+                t.Type_infor as name,
+                COUNT(r.Re_id) as count
+            FROM type t
+            LEFT JOIN request r ON t.Type_id = r.Type_id AND r.Re_is_spam = 0
+            GROUP BY t.Type_id, t.Type_infor
+            HAVING count > 0
+            ORDER BY count DESC
+            LIMIT 6
+        
+Params: []
+
+2025-12-15 18:02:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 18:02:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                DATE_FORMAT(Re_date, '%Y-%m') as month,
+                COUNT(*) as total_requests,
+                COUNT(CASE WHEN Re_status IN ('2', '3') THEN 1 END) as completed_requests
+            FROM request 
+            WHERE Re_date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+            AND Re_is_spam = 0
+            GROUP BY DATE_FORMAT(Re_date, '%Y-%m')
+            ORDER BY month
+        
+Params: []
+
+2025-12-15 18:02:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'WHERE'
+SQL: 
+            SELECT 
+                r.Re_id,
+                r.Re_infor,
+                r.Re_date,
+                r.Re_level,
+                r.Re_status,
+                r.Re_iden,
+                t.Type_infor,
+                CASE 
+                    WHEN r.Re_iden = 1 THEN 'ไม่ระบุตัวตน'
+                    ELSE COALESCE(s.Stu_name, 'ไม่ระบุชื่อ')
+                END as sender_name,
+                COALESCE(aj.Aj_name, 'ยังไม่มอบหมาย') as staff_name,
+                e.Eva_score,
+                TIMESTAMPDIFF(HOUR, r.Re_date, COALESCE(sr.Sv_date, NOW())) as response_hours
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN teacher aj ON r.Re_assign_to = aj.Aj_id
+            LEFT JOIN evaluation e ON r.Re_id = e.Re_id
+            LEFT JOIN save_request sr ON r.Re_id = sr.Re_id
+            WHERE r.Re_is_spam = 0
+            ORDER BY r.Re_date DESC
+            LIMIT 20
+        
+Params: []
+
+2025-12-17 13:26:11 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'ORDER BY'
+SQL: 
+                SELECT r.Re_id, r.Re_title, r.Re_infor, r.Re_status, r.Re_date,
+                       t.Type_infor, t.Type_icon,
+                       s.Stu_name,
+                       CASE r.Re_status 
+                           WHEN '0' THEN 'ยื่นคำร้อง'
+                           WHEN '1' THEN 'กำลังดำเนินการ'
+                           WHEN '2' THEN 'รอการประเมินผล'
+                           WHEN '3' THEN 'เสร็จสิ้น'
+                           WHEN '4' THEN 'ปฏิเสธคำร้อง'
+                           ELSE 'ไม่ระบุ'
+                       END as status_text
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                WHERE r.Re_assign_to = ?
+                ORDER BY r.created_at DESC
+                LIMIT 5
+            
+Params: [59]
+
+2025-12-17 13:27:32 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'ORDER BY'
+SQL: 
+                SELECT r.Re_id, r.Re_title, r.Re_infor, r.Re_status, r.Re_date,
+                       t.Type_infor, t.Type_icon,
+                       s.Stu_name,
+                       CASE r.Re_status 
+                           WHEN '0' THEN 'ยื่นคำร้อง'
+                           WHEN '1' THEN 'กำลังดำเนินการ'
+                           WHEN '2' THEN 'รอการประเมินผล'
+                           WHEN '3' THEN 'เสร็จสิ้น'
+                           WHEN '4' THEN 'ปฏิเสธคำร้อง'
+                           ELSE 'ไม่ระบุ'
+                       END as status_text
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                WHERE r.Re_assign_to = ?
+                ORDER BY r.created_at DESC
+                LIMIT 5
+            
+Params: [58]
+
+2026-01-06 12:33:15 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_update' in 'SET'
+SQL: UPDATE request SET Re_status = '1', Re_update = NOW() WHERE Re_id = ?
+Params: [69]
+
+2026-01-15 20:27:02 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'ORDER BY'
+SQL: 
+                SELECT r.Re_id, r.Re_title, r.Re_infor, r.Re_status, r.Re_date,
+                       t.Type_infor, t.Type_icon,
+                       s.Stu_name,
+                       CASE r.Re_status 
+                           WHEN '0' THEN 'ยื่นคำร้อง'
+                           WHEN '1' THEN 'กำลังดำเนินการ'
+                           WHEN '2' THEN 'รอการประเมินผล'
+                           WHEN '3' THEN 'เสร็จสิ้น'
+                           WHEN '4' THEN 'ปฏิเสธคำร้อง'
+                           ELSE 'ไม่ระบุ'
+                       END as status_text
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                WHERE r.Re_assign_to = ?
+                ORDER BY r.created_at DESC
+                LIMIT 5
+            
+Params: [59]
+

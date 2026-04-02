@@ -1,0 +1,3 @@
+# ไฟล์ .htaccess
+Options -Indexes
+RewriteEngine Off

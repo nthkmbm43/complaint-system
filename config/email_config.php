@@ -8,7 +8,7 @@ define('SMTP_PORT', 587);
 define('SMTP_USERNAME', 'nthkmbm43@gmail.com');
 
 // รหัส App Password 16 หลัก (เขียนติดกัน)
-define('SMTP_PASSWORD', 'xxtoldapngzrlmtn');
+define('SMTP_PASSWORD', ''); // ใส่รหัสผ่าน App Password ใหม่หลังจากเพิกถอนอันเก่าแล้ว
 
 define('MAIL_FROM', 'nthkmbm43@gmail.com');
 define('MAIL_FROM_NAME', 'ระบบข้อร้องเรียน (แจ้งเตือน)');

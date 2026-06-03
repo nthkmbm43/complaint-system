@@ -1,0 +1,15 @@
+# Logs
+/logs/*
+!/logs/.keep
+
+# Uploads
+/uploads/evidence/*
+/uploads/profiles/*
+/uploads/requests/*
+!/uploads/evidence/.keep
+!/uploads/profiles/.keep
+!/uploads/requests/.keep
+
+# OS generated files
+.DS_Store
+Thumbs.db

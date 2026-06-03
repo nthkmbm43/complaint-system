@@ -1,0 +1,328 @@
+2025-08-04 10:53:29 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_topic' in 'field list'
+SQL: 
+        SELECT 
+            CONCAT('ข้อร้องเรียน "', LEFT(r.Re_topic, 50), '" ', 
+                CASE r.Re_status 
+                    WHEN '1' THEN 'ได้รับการยืนยันแล้ว'
+                    WHEN '2' THEN 'ดำเนินการเสร็จสิ้นแล้ว'
+                    WHEN '3' THEN 'ได้รับการประเมินแล้ว'
+                    ELSE 'มีการอัปเดต'
+                END
+            ) as Noti_message,
+            r.Re_date as created_at,
+            CASE r.Re_status
+                WHEN '1' THEN '✅'
+                WHEN '2' THEN '🎉'
+                WHEN '3' THEN '⭐'
+                ELSE '🔔'
+            END as icon,
+            r.Re_status
+        FROM request r
+        WHERE r.Stu_id = ? AND r.Re_is_spam = 0 AND r.Re_status != '0'
+        ORDER BY r.Re_date DESC
+        LIMIT 5
+    
+Params: ["66342310092-2"]
+
+2025-08-04 10:55:02 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_topic' in 'field list'
+SQL: 
+        SELECT 
+            CONCAT('ข้อร้องเรียน "', LEFT(r.Re_topic, 50), '" ', 
+                CASE r.Re_status 
+                    WHEN '1' THEN 'ได้รับการยืนยันแล้ว'
+                    WHEN '2' THEN 'ดำเนินการเสร็จสิ้นแล้ว'
+                    WHEN '3' THEN 'ได้รับการประเมินแล้ว'
+                    ELSE 'มีการอัปเดต'
+                END
+            ) as Noti_message,
+            r.Re_date as created_at,
+            CASE r.Re_status
+                WHEN '1' THEN '✅'
+                WHEN '2' THEN '🎉'
+                WHEN '3' THEN '⭐'
+                ELSE '🔔'
+            END as icon,
+            r.Re_status
+        FROM request r
+        WHERE r.Stu_id = ? AND r.Re_is_spam = 0 AND r.Re_status != '0'
+        ORDER BY r.Re_date DESC
+        LIMIT 5
+    
+Params: ["66342310092-2"]
+
+2025-08-04 10:56:38 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_topic' in 'field list'
+SQL: 
+        SELECT 
+            CONCAT('ข้อร้องเรียน "', LEFT(r.Re_topic, 50), '" ', 
+                CASE r.Re_status 
+                    WHEN '1' THEN 'ได้รับการยืนยันแล้ว'
+                    WHEN '2' THEN 'ดำเนินการเสร็จสิ้นแล้ว'
+                    WHEN '3' THEN 'ได้รับการประเมินแล้ว'
+                    ELSE 'มีการอัปเดต'
+                END
+            ) as Noti_message,
+            r.Re_date as created_at,
+            CASE r.Re_status
+                WHEN '1' THEN '✅'
+                WHEN '2' THEN '🎉'
+                WHEN '3' THEN '⭐'
+                ELSE '🔔'
+            END as icon,
+            r.Re_status
+        FROM request r
+        WHERE r.Stu_id = ? AND r.Re_is_spam = 0 AND r.Re_status != '0'
+        ORDER BY r.Re_date DESC
+        LIMIT 5
+    
+Params: ["66342310092-2"]
+
+2025-08-14 16:56:23 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_password = :Stu_password WHERE Stu_id = ?
+Params: {"Stu_password":"1234567","0":"66342310092-2"}
+
+2025-08-14 16:56:31 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_password = :Stu_password WHERE Stu_id = ?
+Params: {"Stu_password":"1234567","0":"66342310092-2"}
+
+2025-08-19 13:58:37 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Unit_status' in 'where clause'
+SQL: 
+        SELECT Unit_id, Unit_name, Unit_icon 
+        FROM organization_unit 
+        WHERE Unit_type = 'faculty' AND Unit_status = 'active'
+        ORDER BY Unit_name
+    
+Params: []
+
+2025-08-19 13:58:37 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Unit_status' in 'where clause'
+SQL: 
+        SELECT Unit_id, Unit_name, Unit_icon 
+        FROM organization_unit 
+        WHERE Unit_parent_id = ? AND Unit_type = 'major' AND Unit_status = 'active'
+        ORDER BY Unit_name
+    
+Params: [1]
+
+2025-08-19 13:58:49 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Unit_status' in 'where clause'
+SQL: 
+        SELECT Unit_id, Unit_name, Unit_icon 
+        FROM organization_unit 
+        WHERE Unit_type = 'faculty' AND Unit_status = 'active'
+        ORDER BY Unit_name
+    
+Params: []
+
+2025-08-19 13:58:49 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Unit_status' in 'where clause'
+SQL: 
+        SELECT Unit_id, Unit_name, Unit_icon 
+        FROM organization_unit 
+        WHERE Unit_parent_id = ? AND Unit_type = 'major' AND Unit_status = 'active'
+        ORDER BY Unit_name
+    
+Params: [1]
+
+2025-09-10 00:59:34 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"3","0":7}
+
+2025-11-30 12:57:16 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_title = :Re_title, Re_infor = :Re_infor, Type_id = :Type_id, Re_iden = :Re_iden WHERE Re_id = ? AND Stu_id = ?
+Params: {"Re_title":"\u0e01\u0e32\u0e23\u0e40\u0e02\u0e49\u0e32\u0e40\u0e23\u0e35\u0e22\u0e19","Re_infor":"\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e21\u0e35\u0e01\u0e32\u0e23\u0e41\u0e08\u0e49\u0e07\u0e25\u0e48\u0e27\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e01\u0e48\u0e2d\u0e19\u0e40\u0e23\u0e35\u0e22\u0e19\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22 1 \u0e27\u0e31\u0e19 \u0e2b\u0e23\u0e37\u0e2d\u0e01\u0e23\u0e13\u0e35\u0e09\u0e38\u0e01\u0e40\u0e09\u0e34\u0e19\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e41\u0e08\u0e49\u0e07\u0e01\u0e48\u0e2d\u0e19\u0e2a\u0e31\u0e01 10 \u0e19\u0e32\u0e17\u0e35","Type_id":"1","Re_iden":0,"0":55,"1":"66342310092-2"}
+
+2025-11-30 12:58:10 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_title = :Re_title, Re_infor = :Re_infor, Type_id = :Type_id, Re_iden = :Re_iden WHERE Re_id = ? AND Stu_id = ?
+Params: {"Re_title":"\u0e01\u0e32\u0e23\u0e40\u0e02\u0e49\u0e32\u0e40\u0e23\u0e35\u0e22\u0e19","Re_infor":"\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e21\u0e35\u0e01\u0e32\u0e23\u0e41\u0e08\u0e49\u0e07\u0e25\u0e48\u0e27\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e01\u0e48\u0e2d\u0e19\u0e40\u0e23\u0e35\u0e22\u0e19\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22 1 \u0e27\u0e31\u0e19 \u0e2b\u0e23\u0e37\u0e2d\u0e01\u0e23\u0e13\u0e35\u0e09\u0e38\u0e01\u0e40\u0e09\u0e34\u0e19\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e41\u0e08\u0e49\u0e07\u0e01\u0e48\u0e2d\u0e19\u0e2a\u0e31\u0e01 10 \u0e19\u0e32\u0e17\u0e35","Type_id":"1","Re_iden":0,"0":55,"1":"66342310092-2"}
+
+2025-11-30 12:58:33 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"-1","0":55}
+
+2025-11-30 13:23:46 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"-1","0":55}
+
+2025-11-30 13:34:26 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_title = :Re_title, Re_infor = :Re_infor, Type_id = :Type_id, Re_iden = :Re_iden WHERE Re_id = ? AND Stu_id = ?
+Params: {"Re_title":"\u0e01\u0e32\u0e23\u0e40\u0e02\u0e49\u0e32\u0e40\u0e23\u0e35\u0e22\u0e19\/\u0e40\u0e02\u0e49\u0e32\u0e2a\u0e2d\u0e19","Re_infor":"\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e21\u0e35\u0e01\u0e32\u0e23\u0e41\u0e08\u0e49\u0e07\u0e25\u0e48\u0e27\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e01\u0e48\u0e2d\u0e19\u0e40\u0e23\u0e35\u0e22\u0e19\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22 1 \u0e27\u0e31\u0e19 \u0e2b\u0e23\u0e37\u0e2d\u0e01\u0e23\u0e13\u0e35\u0e09\u0e38\u0e01\u0e40\u0e09\u0e34\u0e19\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e41\u0e08\u0e49\u0e07\u0e01\u0e48\u0e2d\u0e19\u0e2a\u0e31\u0e01 10 \u0e19\u0e32\u0e17\u0e35","Type_id":"1","Re_iden":0,"0":55,"1":"66342310092-2"}
+
+2025-11-30 13:43:44 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_title = :Re_title, Re_infor = :Re_infor, Type_id = :Type_id, Re_iden = :Re_iden WHERE Re_id = ? AND Stu_id = ?
+Params: {"Re_title":"\u0e01\u0e32\u0e23\u0e40\u0e02\u0e49\u0e32\u0e40\u0e23\u0e35\u0e22\u0e19\/\u0e40\u0e02\u0e49\u0e32\u0e2a\u0e2d\u0e19","Re_infor":"\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e21\u0e35\u0e01\u0e32\u0e23\u0e41\u0e08\u0e49\u0e07\u0e25\u0e48\u0e27\u0e07\u0e2b\u0e19\u0e49\u0e32\u0e01\u0e48\u0e2d\u0e19\u0e40\u0e23\u0e35\u0e22\u0e19\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22 1 \u0e27\u0e31\u0e19 \u0e2b\u0e23\u0e37\u0e2d\u0e01\u0e23\u0e13\u0e35\u0e09\u0e38\u0e01\u0e40\u0e09\u0e34\u0e19\u0e2d\u0e22\u0e32\u0e01\u0e43\u0e2b\u0e49\u0e41\u0e08\u0e49\u0e07\u0e01\u0e48\u0e2d\u0e19\u0e2a\u0e31\u0e01 10 \u0e19\u0e32\u0e17\u0e35","Type_id":"1","Re_iden":0,"0":55,"1":"66342310092-2"}
+
+2025-12-11 21:19:51 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"3","0":16}
+
+2025-12-11 21:34:43 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"3","0":16}
+
+2025-12-12 20:09:22 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"-1","0":63}
+
+2025-12-12 20:45:08 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"5","0":63}
+
+2025-12-12 20:46:30 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"5","0":63}
+
+2025-12-12 20:46:36 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"5","0":63}
+
+2025-12-12 20:50:15 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_status = :Re_status WHERE Re_id = ?
+Params: {"Re_status":"5","0":63}
+
+2025-12-13 17:45:28 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2025-12-13 17:45:32 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2025-12-13 17:49:12 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as total
+                FROM request r 
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+                LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+                WHERE r.Re_is_spam = 0 AND r.Stu_id = ?
+Params: ["66342310092-2"]
+
+2025-12-13 17:49:12 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                       CASE 
+                           WHEN r.Re_iden = 1 THEN 'ไม่ระบุตัวตน' 
+                           ELSE COALESCE(s.Stu_name, 'ไม่ระบุตัวตน')
+                       END as requester_name,
+                       s.Stu_id,
+                       major.Unit_name as major_name, major.Unit_icon as major_icon,
+                       faculty.Unit_name as faculty_name, faculty.Unit_icon as faculty_icon,
+                       CASE 
+                           WHEN r.Stu_id = ? THEN 'mine' 
+                           ELSE 'other' 
+                       END as ownership
+                FROM request r 
+                LEFT JOIN type t ON r.Type_id = t.Type_id 
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+                LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+                WHERE r.Re_is_spam = 0 AND r.Stu_id = ? ORDER BY r.Re_date DESC, r.Re_id DESC LIMIT ? OFFSET ?
+Params: ["66342310092-2","66342310092-2",10,0]
+
+2025-12-13 17:49:12 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count 
+                FROM request r 
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+                LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+                WHERE r.Re_is_spam = 0 AND r.Stu_id = ?
+Params: ["66342310092-2"]
+
+2025-12-13 17:55:55 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as total
+                FROM request r 
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+                LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+                WHERE r.Re_is_spam = 0 AND r.Stu_id = ?
+Params: ["66342310092-2"]
+
+2025-12-13 17:55:55 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                       CASE 
+                           WHEN r.Re_iden = 1 THEN 'ไม่ระบุตัวตน' 
+                           ELSE COALESCE(s.Stu_name, 'ไม่ระบุตัวตน')
+                       END as requester_name,
+                       s.Stu_id,
+                       major.Unit_name as major_name, major.Unit_icon as major_icon,
+                       faculty.Unit_name as faculty_name, faculty.Unit_icon as faculty_icon,
+                       CASE 
+                           WHEN r.Stu_id = ? THEN 'mine' 
+                           ELSE 'other' 
+                       END as ownership
+                FROM request r 
+                LEFT JOIN type t ON r.Type_id = t.Type_id 
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+                LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+                WHERE r.Re_is_spam = 0 AND r.Stu_id = ? ORDER BY r.Re_date DESC, r.Re_id DESC LIMIT ? OFFSET ?
+Params: ["66342310092-2","66342310092-2",10,0]
+
+2025-12-13 17:55:55 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count 
+                FROM request r 
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+                LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+                WHERE r.Re_is_spam = 0 AND r.Stu_id = ?
+Params: ["66342310092-2"]
+
+2025-12-13 18:10:03 - Database Error: SQLSTATE[HY093]: Invalid parameter number
+SQL: UPDATE request SET Re_title = :set_Re_title, Re_infor = :set_Re_infor, Type_id = :set_Type_id, Re_iden = :set_Re_iden WHERE Re_id = :id AND Stu_id = :stu_id
+Params: {"set_Re_title":"\u0e17\u0e14\u0e2a\u0e2d\u0e1a\u0e23\u0e30\u0e1a\u0e1a\u0e43\u0e19\u0e01\u0e32\u0e23\u0e23\u0e49\u0e2d\u0e07\u0e40\u0e23\u0e35\u0e22\u0e19","set_Re_infor":"\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e40\u0e17\u0e47\u0e08 \u0e40\u0e1e\u0e34\u0e48\u0e21\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e40\u0e25\u0e47\u0e01\u0e19\u0e49\u0e2d\u0e22","set_Type_id":"8","set_Re_iden":0}
+
+2025-12-13 21:49:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["63342110011-0"]
+
+2025-12-13 22:05:12 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+SQL: INSERT INTO notification (Noti_title, Noti_message, Noti_type, Re_id, Stu_id, Aj_id, created_by) VALUES (:Noti_title, :Noti_message, :Noti_type, :Re_id, :Stu_id, :Aj_id, :created_by)
+Params: {"Noti_title":"\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e02\u0e49\u0e2d\u0e23\u0e49\u0e2d\u0e07\u0e40\u0e23\u0e35\u0e22\u0e19\u0e02\u0e2d\u0e07\u0e04\u0e38\u0e13\u0e41\u0e25\u0e49\u0e27","Noti_message":"\u0e23\u0e30\u0e1a\u0e1a\u0e44\u0e14\u0e49\u0e23\u0e31\u0e1a\u0e02\u0e49\u0e2d\u0e23\u0e49\u0e2d\u0e07\u0e40\u0e23\u0e35\u0e22\u0e19\u0e02\u0e2d\u0e07\u0e04\u0e38\u0e13\u0e41\u0e25\u0e49\u0e27 \u0e40\u0e08\u0e49\u0e32\u0e2b\u0e19\u0e49\u0e32\u0e17\u0e35\u0e48\u0e08\u0e30\u0e14\u0e33\u0e40\u0e19\u0e34\u0e19\u0e01\u0e32\u0e23\u0e15\u0e23\u0e27\u0e08\u0e2a\u0e2d\u0e1a\u0e41\u0e25\u0e30\u0e15\u0e34\u0e14\u0e15\u0e48\u0e2d\u0e01\u0e25\u0e31\u0e1a\u0e20\u0e32\u0e22\u0e43\u0e19 72 \u0e0a\u0e31\u0e48\u0e27\u0e42\u0e21\u0e07","Noti_type":"system","Re_id":"70","Stu_id":"63342110011-0","Aj_id":null,"created_by":null}
+
+2025-12-13 22:17:54 - Database Error: SQLSTATE[HY093]: Invalid parameter number
+SQL: UPDATE request SET Re_status = :set_Re_status WHERE Re_id = :id
+Params: {"set_Re_status":"3"}
+
+2025-12-14 08:53:41 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2025-12-15 18:28:39 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2025-12-15 23:33:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2026-01-06 11:26:59 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2026-01-06 13:41:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2026-01-06 14:13:48 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2026-01-06 14:13:54 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2026-01-06 14:48:09 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["66342310092-2"]
+
+2026-01-16 10:10:35 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["62342110277-7"]
+
+2026-01-16 10:35:57 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["62342110277-7"]
+
+2026-01-16 10:36:46 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Stu_id = ? AND Re_is_spam = 0
+Params: ["62342110277-7"]
+

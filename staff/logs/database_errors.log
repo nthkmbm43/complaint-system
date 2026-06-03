@@ -1,0 +1,1240 @@
+2025-08-25 11:39:02 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-05 15:01:05 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'created_at' in 'field list'
+SQL: 
+        SELECT 
+            DATE_FORMAT(created_at, '%Y-%m') as month,
+            DATE_FORMAT(created_at, '%M %Y') as month_name,
+            Unit_type,
+            COUNT(*) as count
+        FROM organization_unit 
+        WHERE created_at >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
+        GROUP BY DATE_FORMAT(created_at, '%Y-%m'), Unit_type
+        ORDER BY month ASC
+    
+Params: []
+
+2025-09-05 15:14:42 - Database Error: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+SQL: SELECT * FROM teacher WHERE Aj_id = ?
+Params: [3]
+
+2025-09-05 15:14:42 - Database Error: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+SQL: 
+        SELECT u1.*, u2.Unit_name as parent_name,
+               COALESCE(u1.Unit_description, '') as Unit_description,
+               COALESCE(u1.Unit_email, '') as Unit_email,
+               COALESCE(u1.Unit_phone, '') as Unit_phone,
+               COUNT(DISTINCT s.Stu_id) as student_count,
+               COUNT(DISTINCT u3.Unit_id) as child_count
+        FROM organization_unit u1
+        LEFT JOIN organization_unit u2 ON u1.Unit_parent_id = u2.Unit_id
+        LEFT JOIN student s ON u1.Unit_id = s.Unit_id
+        LEFT JOIN organization_unit u3 ON u1.Unit_id = u3.Unit_parent_id
+        GROUP BY u1.Unit_id
+        ORDER BY u1.Unit_type ASC, u1.Unit_name ASC
+    
+Params: []
+
+2025-09-05 15:14:42 - Database Error: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+SQL: SELECT * FROM teacher WHERE Aj_id = ?
+Params: [3]
+
+2025-09-05 15:14:42 - Database Error: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+SQL: SELECT * FROM teacher WHERE Aj_id = ?
+Params: [3]
+
+2025-09-05 15:15:16 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u1.Unit_description' in 'field list'
+SQL: 
+        SELECT u1.*, u2.Unit_name as parent_name,
+               COALESCE(u1.Unit_description, '') as Unit_description,
+               COALESCE(u1.Unit_email, '') as Unit_email,
+               COALESCE(u1.Unit_phone, '') as Unit_phone,
+               COUNT(DISTINCT s.Stu_id) as student_count,
+               COUNT(DISTINCT u3.Unit_id) as child_count
+        FROM organization_unit u1
+        LEFT JOIN organization_unit u2 ON u1.Unit_parent_id = u2.Unit_id
+        LEFT JOIN student s ON u1.Unit_id = s.Unit_id
+        LEFT JOIN organization_unit u3 ON u1.Unit_id = u3.Unit_parent_id
+        GROUP BY u1.Unit_id
+        ORDER BY u1.Unit_type ASC, u1.Unit_name ASC
+    
+Params: []
+
+2025-09-05 15:22:16 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u1.Unit_description' in 'field list'
+SQL: 
+        SELECT u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id,
+               COALESCE(u1.Unit_description, '') as Unit_description,
+               COALESCE(u1.Unit_email, '') as Unit_email,
+               COALESCE(u1.Unit_phone, '') as Unit_phone,
+               COALESCE(u2.Unit_name, '') as parent_name,
+               COUNT(DISTINCT s.Stu_id) as student_count,
+               COUNT(DISTINCT u3.Unit_id) as child_count
+        FROM organization_unit u1
+        LEFT JOIN organization_unit u2 ON u1.Unit_parent_id = u2.Unit_id
+        LEFT JOIN student s ON u1.Unit_id = s.Unit_id
+        LEFT JOIN organization_unit u3 ON u1.Unit_id = u3.Unit_parent_id
+        GROUP BY u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id, u1.Unit_description, u1.Unit_email, u1.Unit_phone, u2.Unit_name
+        ORDER BY u1.Unit_type ASC, u1.Unit_name ASC
+    
+Params: []
+
+2025-09-05 15:23:04 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'created_at' in 'field list'
+SQL: INSERT INTO organization_unit (Unit_name, Unit_type, Unit_parent_id, Unit_icon, created_at) VALUES (:Unit_name, :Unit_type, :Unit_parent_id, :Unit_icon, :created_at)
+Params: {"Unit_name":"\u0e04\u0e13\u0e30\u0e27\u0e34\u0e28\u0e27\u0e01\u0e23\u0e23\u0e21\u0e28\u0e32\u0e2a\u0e15\u0e23\u0e4c","Unit_type":"faculty","Unit_parent_id":null,"Unit_icon":"\u2699\ufe0f","created_at":"2025-09-05 15:23:04"}
+
+2025-09-05 15:23:04 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u1.Unit_description' in 'field list'
+SQL: 
+        SELECT u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id,
+               COALESCE(u1.Unit_description, '') as Unit_description,
+               COALESCE(u1.Unit_email, '') as Unit_email,
+               COALESCE(u1.Unit_phone, '') as Unit_phone,
+               COALESCE(u2.Unit_name, '') as parent_name,
+               COUNT(DISTINCT s.Stu_id) as student_count,
+               COUNT(DISTINCT u3.Unit_id) as child_count
+        FROM organization_unit u1
+        LEFT JOIN organization_unit u2 ON u1.Unit_parent_id = u2.Unit_id
+        LEFT JOIN student s ON u1.Unit_id = s.Unit_id
+        LEFT JOIN organization_unit u3 ON u1.Unit_id = u3.Unit_parent_id
+        GROUP BY u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id, u1.Unit_description, u1.Unit_email, u1.Unit_phone, u2.Unit_name
+        ORDER BY u1.Unit_type ASC, u1.Unit_name ASC
+    
+Params: []
+
+2025-09-05 15:23:35 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u1.Unit_description' in 'field list'
+SQL: 
+        SELECT u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id,
+               COALESCE(u1.Unit_description, '') as Unit_description,
+               COALESCE(u1.Unit_email, '') as Unit_email,
+               COALESCE(u1.Unit_phone, '') as Unit_phone,
+               COALESCE(u2.Unit_name, '') as parent_name,
+               COUNT(DISTINCT s.Stu_id) as student_count,
+               COUNT(DISTINCT u3.Unit_id) as child_count
+        FROM organization_unit u1
+        LEFT JOIN organization_unit u2 ON u1.Unit_parent_id = u2.Unit_id
+        LEFT JOIN student s ON u1.Unit_id = s.Unit_id
+        LEFT JOIN organization_unit u3 ON u1.Unit_id = u3.Unit_parent_id
+        GROUP BY u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id, u1.Unit_description, u1.Unit_email, u1.Unit_phone, u2.Unit_name
+        ORDER BY u1.Unit_type ASC, u1.Unit_name ASC
+    
+Params: []
+
+2025-09-05 15:26:34 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'u1.Unit_description' in 'field list'
+SQL: 
+        SELECT u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id,
+               COALESCE(u1.Unit_description, '') as Unit_description,
+               COALESCE(u1.Unit_email, '') as Unit_email,
+               COALESCE(u1.Unit_phone, '') as Unit_phone,
+               COALESCE(u2.Unit_name, '') as parent_name,
+               COUNT(DISTINCT s.Stu_id) as student_count,
+               COUNT(DISTINCT u3.Unit_id) as child_count
+        FROM organization_unit u1
+        LEFT JOIN organization_unit u2 ON u1.Unit_parent_id = u2.Unit_id
+        LEFT JOIN student s ON u1.Unit_id = s.Unit_id
+        LEFT JOIN organization_unit u3 ON u1.Unit_id = u3.Unit_parent_id
+        GROUP BY u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id, u1.Unit_description, u1.Unit_email, u1.Unit_phone, u2.Unit_name
+        ORDER BY u1.Unit_type ASC, u1.Unit_name ASC
+    
+Params: []
+
+2025-09-05 15:34:19 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 15:34:37 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 15:34:52 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 15:35:07 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 15:37:39 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e01\u0e32\u0e23\u0e08\u0e31\u0e14\u0e01\u0e32\u0e23","Unit_icon":"\ud83d\udee0\ufe0f","Unit_email":null,"Unit_tel":null,"0":42}
+
+2025-09-05 15:53:15 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9b","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:04:36 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:09:04 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"fa-truck","Unit_email":"test@rmuti.ac.th","Unit_tel":"043-222-343","0":41}
+
+2025-09-05 16:09:13 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'Unit_name' in order clause is ambiguous
+SQL: 
+        SELECT u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id,
+               COALESCE(u1.Unit_email, '') as Unit_email,
+               COALESCE(u1.Unit_tel, '') as Unit_tel,
+               COALESCE(u2.Unit_name, '') as parent_name,
+               COUNT(DISTINCT s.Stu_id) as student_count,
+               COUNT(DISTINCT u3.Unit_id) as child_count
+        FROM organization_unit u1
+        LEFT JOIN organization_unit u2 ON u1.Unit_parent_id = u2.Unit_id
+        LEFT JOIN student s ON u1.Unit_id = s.Unit_id
+        LEFT JOIN organization_unit u3 ON u1.Unit_id = u3.Unit_parent_id
+        GROUP BY u1.Unit_id, u1.Unit_name, u1.Unit_type, u1.Unit_icon, u1.Unit_parent_id, u1.Unit_email, u1.Unit_tel, u2.Unit_name
+        ORDER BY Unit_name COLLATE utf8mb4_unicode_ci ASC, Unit_id ASC
+    
+Params: []
+
+2025-09-05 16:17:57 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"delivery_truck","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:18:15 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:18:30 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:32:27 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:34:46 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:38:15 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e01\u0e32\u0e23\u0e08\u0e31\u0e14\u0e01\u0e32\u0e23","Unit_icon":"\u2328\ufe0f","Unit_email":null,"Unit_tel":null,"0":42}
+
+2025-09-05 16:53:28 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e42\u0e25\u0e08\u0e34\u0e2a\u0e15\u0e34\u0e01\u0e2a\u0e4c","Unit_icon":"\ud83d\ude9a","Unit_email":null,"Unit_tel":null,"0":41}
+
+2025-09-05 16:56:51 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83d\udca1","Unit_email":null,"Unit_tel":null,"0":44}
+
+2025-09-05 17:04:42 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\u2695\ufe0f","Unit_email":null,"Unit_tel":null,"0":44}
+
+2025-09-05 17:05:36 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83c\udfe0","Unit_email":null,"Unit_tel":null,"0":45}
+
+2025-09-05 17:06:06 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83d\udca1","Unit_email":null,"Unit_tel":null,"0":45}
+
+2025-09-05 17:11:37 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83d\udca1","Unit_email":null,"Unit_tel":null,"0":45}
+
+2025-09-05 17:12:51 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83d\udd28","Unit_email":null,"Unit_tel":null,"0":46}
+
+2025-09-07 15:15:52 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83d\udd28","Unit_email":null,"Unit_tel":null,"0":46}
+
+2025-09-07 18:27:00 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE student SET Stu_name = :Stu_name, Stu_tel = :Stu_tel, Stu_email = :Stu_email, Unit_id = :Unit_id WHERE Stu_id = ?
+Params: {"Stu_name":"\u0e19\u0e32\u0e22\u0e18\u0e19\u0e01\u0e24\u0e15 \u0e2b\u0e21\u0e39\u0e48\u0e1a\u0e49\u0e32\u0e19\u0e21\u0e48\u0e27\u0e071","Stu_tel":"0949099502","Stu_email":"thanakrit.mu@rmuti.ac.th","Unit_id":11,"0":"66342310092-2"}
+
+2025-09-08 16:15:19 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-08 17:28:35 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83d\udd28","Unit_email":"test@rmuti.ac.th","Unit_tel":"02-443-434","0":47}
+
+2025-09-09 12:07:17 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE organization_unit SET Unit_name = :Unit_name, Unit_icon = :Unit_icon, Unit_email = :Unit_email, Unit_tel = :Unit_tel WHERE Unit_id = ?
+Params: {"Unit_name":"\u0e17\u0e14\u0e25\u0e2d\u0e07","Unit_icon":"\ud83d\udee0\ufe0f","Unit_email":"test@rmuti.ac.th","Unit_tel":"02-443-434","0":47}
+
+2025-09-09 12:38:18 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-09 12:56:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-09 13:06:41 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-09 14:17:18 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-09 14:20:01 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-09 14:23:38 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-10 00:46:46 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-09-10 00:47:48 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'field list'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-12-01 14:40:07 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Aj_id' in 'on clause'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+            s.Stu_name as requester_name, s.Stu_id,
+            th.Aj_name as assigned_name
+            FROM request r
+            LEFT JOIN type t ON r.Type_id = t.Type_id
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN teacher th ON r.Aj_id = th.Aj_id
+            WHERE r.Re_status = '0'
+            ORDER BY r.Re_id DESC 
+            LIMIT 20 OFFSET 0
+Params: []
+
+2025-12-01 14:47:25 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Aj_id' in 'on clause'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                s.Stu_name as requester_name, s.Stu_id,
+                th.Aj_name as assigned_name
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN teacher th ON r.Aj_id = th.Aj_id
+                WHERE r.Re_status = '0'
+                ORDER BY r.Re_id desc 
+                LIMIT 20 OFFSET 0
+Params: []
+
+2025-12-01 14:54:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Aj_id' in 'on clause'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                s.Stu_name as requester_name, s.Stu_id,
+                th.Aj_name as assigned_name
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN teacher th ON r.Aj_id = th.Aj_id
+                WHERE r.Re_status = '0'
+                ORDER BY r.Re_id desc 
+                LIMIT 20 OFFSET 0
+Params: []
+
+2025-12-01 14:54:44 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Aj_id' in 'on clause'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                s.Stu_name as requester_name, s.Stu_id,
+                th.Aj_name as assigned_name
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN teacher th ON r.Aj_id = th.Aj_id
+                WHERE r.Re_status = '0'
+                ORDER BY r.Re_id desc 
+                LIMIT 20 OFFSET 0
+Params: []
+
+2025-12-01 14:58:29 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Aj_id' in 'on clause'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                s.Stu_name as requester_name, s.Stu_id,
+                th.Aj_name as assigned_name
+                FROM request r
+                LEFT JOIN type t ON r.Type_id = t.Type_id
+                LEFT JOIN student s ON r.Stu_id = s.Stu_id
+                LEFT JOIN teacher th ON r.Aj_id = th.Aj_id
+                WHERE r.Re_status = '0'
+                ORDER BY r.Re_id desc 
+                LIMIT 20 OFFSET 0
+Params: []
+
+2025-12-09 13:38:13 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_level = :Re_level, updated_at = :updated_at WHERE Re_id = ?
+Params: {"Re_level":"5","updated_at":"2025-12-09 13:38:13","0":62}
+
+2025-12-09 15:00:41 - Database Error: SQLSTATE[HY093]: Invalid parameter number: mixed named and positional parameters
+SQL: UPDATE request SET Re_level = :Re_level, updated_at = :updated_at WHERE Re_id = ?
+Params: {"Re_level":"5","updated_at":"2025-12-09 15:00:41","0":62}
+
+2025-12-09 15:05:23 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sv_detail' in 'field list'
+SQL: INSERT INTO save_request (Re_id, Aj_id, Sv_detail, Sv_date, created_at) VALUES (:Re_id, :Aj_id, :Sv_detail, :Sv_date, :created_at)
+Params: {"Re_id":62,"Aj_id":3,"Sv_detail":"\u0e40\u0e1b\u0e25\u0e35\u0e48\u0e22\u0e19\u0e23\u0e30\u0e14\u0e31\u0e1a\u0e04\u0e27\u0e32\u0e21\u0e2a\u0e33\u0e04\u0e31\u0e0d\u0e40\u0e1b\u0e47\u0e19: \u0e27\u0e34\u0e01\u0e24\u0e15\/\u0e09\u0e38\u0e01\u0e40\u0e09\u0e34\u0e19","Sv_date":"2025-12-09 15:05:23","created_at":"2025-12-09 15:05:23"}
+
+2025-12-11 17:35:42 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_solution' in 'field list'
+SQL: UPDATE request SET Re_solution = ?, Re_status = 2, Re_solved_date = NOW() WHERE Re_id = ?
+Params: ["\u0e14\u0e33\u0e40\u0e19\u0e34\u0e19\u0e01\u0e32\u0e23\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e2a\u0e34\u0e49\u0e19\u0e41\u0e25\u0e49\u0e27","16"]
+
+2025-12-11 17:35:48 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_solution' in 'field list'
+SQL: UPDATE request SET Re_solution = ?, Re_status = 2, Re_solved_date = NOW() WHERE Re_id = ?
+Params: ["\u0e14\u0e33\u0e40\u0e19\u0e34\u0e19\u0e01\u0e32\u0e23\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e2a\u0e34\u0e49\u0e19\u0e41\u0e25\u0e49\u0e27","16"]
+
+2025-12-13 13:50:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'field list'
+SQL: 
+            SELECT AVG(TIMESTAMPDIFF(HOUR, r.created_at, sr.created_at)) as avg_hours
+            FROM request r
+            JOIN save_request sr ON r.Re_id = sr.Re_id
+            WHERE sr.created_at IS NOT NULL AND r.Re_is_spam = 0
+        
+Params: []
+
+2025-12-13 13:50:16 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.created_at' in 'field list'
+SQL: 
+            SELECT AVG(TIMESTAMPDIFF(HOUR, r.created_at, sr.created_at)) as avg_hours
+            FROM request r
+            JOIN save_request sr ON r.Re_id = sr.Re_id
+            WHERE sr.created_at IS NOT NULL AND r.Re_is_spam = 0
+        
+Params: []
+
+2025-12-13 14:05:59 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 14:06:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as total FROM request r LEFT JOIN student s ON r.Stu_id = s.Stu_id WHERE r.Re_is_spam = 0
+Params: []
+
+2025-12-13 14:22:45 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as total FROM request r LEFT JOIN student s ON r.Stu_id = s.Stu_id WHERE r.Re_is_spam = 0
+Params: []
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [62]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [59]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [49]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [20]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [3]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [45]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [39]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [35]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [17]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [9]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [2]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [54]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [47]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [31]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [30]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [23]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [22]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [12]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [11]
+
+2025-12-13 14:47:17 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [4]
+
+2025-12-13 14:48:58 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as total FROM request r LEFT JOIN student s ON r.Stu_id = s.Stu_id WHERE r.Re_is_spam = 0
+Params: []
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [62]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [59]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [49]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [20]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [3]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [45]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [39]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [35]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [17]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [9]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [2]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [54]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [47]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [31]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [30]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [23]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [22]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [12]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [11]
+
+2025-12-13 14:49:06 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [4]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [62]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [59]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [49]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [20]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [3]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [45]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [39]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [35]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [17]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [9]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [2]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [54]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [47]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [31]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [30]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [23]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [22]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [12]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [11]
+
+2025-12-13 15:08:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [4]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [62]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [59]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [49]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [20]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [3]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [45]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [39]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [35]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [17]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [9]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [2]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [54]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [47]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [31]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [30]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [23]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [22]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [12]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [11]
+
+2025-12-13 15:18:31 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Sup_file' in 'field list'
+SQL: SELECT Sup_file FROM supporting_evidence WHERE Re_id = ?
+Params: [4]
+
+2025-12-13 15:26:23 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as total FROM request r LEFT JOIN student s ON r.Stu_id = s.Stu_id WHERE r.Re_is_spam = 0
+Params: []
+
+2025-12-13 16:09:48 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 17:22:23 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 17:35:16 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_level = '0' AND Re_status = '1' AND Re_is_spam = 0
+Params: []
+
+2025-12-13 17:40:52 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 17:41:32 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 19:04:14 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 19:07:07 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'where clause'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 19:07:10 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_update' in 'order clause'
+SQL: SELECT r.*, s.Stu_name, t.Type_infor 
+         FROM request r 
+         LEFT JOIN student s ON r.Stu_id = s.Stu_id 
+         LEFT JOIN type t ON r.Type_id = t.Type_id 
+         WHERE r.Re_assign_to = ? AND r.Re_status IN (1, 2, 3) AND r.Re_status = 1 
+         ORDER BY r.Re_level DESC, r.Re_update DESC 
+         LIMIT 15 OFFSET 0
+Params: [1]
+
+2025-12-13 19:20:28 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.Re_update' in 'order clause'
+SQL: SELECT r.*, s.Stu_name, t.Type_infor 
+         FROM request r 
+         LEFT JOIN student s ON r.Stu_id = s.Stu_id 
+         LEFT JOIN type t ON r.Type_id = t.Type_id 
+         WHERE r.Re_assign_to = ? AND r.Re_status IN (1, 2, 3) AND r.Re_status = 1 
+         ORDER BY r.Re_level DESC, r.Re_update DESC 
+         LIMIT 15 OFFSET 0
+Params: [1]
+
+2025-12-13 21:49:02 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 22:09:21 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 22:11:33 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 22:29:16 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-13 22:30:05 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-14 13:54:57 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 17:05:33 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 17:15:23 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 17:40:33 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Re_is_spam' in 'WHERE'
+SQL: SELECT COUNT(*) as count FROM request WHERE Re_is_spam = 0
+Params: []
+
+2025-12-15 18:24:57 - Database Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sr.Sv_detail' in 'SELECT'
+SQL: SELECT r.*, t.Type_infor, t.Type_icon,
+                   CASE r.Re_iden 
+                       WHEN 1 THEN 'ไม่ระบุตัวตน' 
+                       ELSE s.Stu_name 
+                   END as requester_name,
+                   s.Stu_id, major.Unit_name as major_name,
+                   faculty.Unit_name as faculty_name,
+                   asn.Aj_name as assigned_name,
+                   (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) as reply_count,
+                   (SELECT MAX(sr.Sv_date) FROM save_request sr WHERE sr.Re_id = r.Re_id) as last_reply_date,
+                   (SELECT sr.Sv_detail FROM save_request sr WHERE sr.Re_id = r.Re_id ORDER BY sr.Sv_date DESC LIMIT 1) as last_reply_text
+            FROM request r 
+            LEFT JOIN type t ON r.Type_id = t.Type_id 
+            LEFT JOIN student s ON r.Stu_id = s.Stu_id
+            LEFT JOIN organization_unit major ON s.Unit_id = major.Unit_id
+            LEFT JOIN organization_unit faculty ON major.Unit_parent_id = faculty.Unit_id
+            LEFT JOIN teacher asn ON r.Re_assign_to = asn.Aj_id
+            WHERE r.Re_status IN ('1', '2') AND 
+            (SELECT COUNT(*) FROM save_request sr WHERE sr.Re_id = r.Re_id) = 0
+            OR 
+            r.Re_id NOT IN (
+                SELECT DISTINCT sr.Re_id 
+                FROM save_request sr 
+                WHERE sr.Sv_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+            )
+        
+            ORDER BY 
+                CASE 
+                    WHEN r.Re_level = '5' THEN 1
+                    WHEN r.Re_level = '4' THEN 2
+                    WHEN r.Re_level = '3' THEN 3
+                    WHEN r.Re_level = '2' THEN 4
+                    WHEN r.Re_level = '1' THEN 5
+                    ELSE 6
+                END,
+                r.Re_date DESC
+            LIMIT ? OFFSET ?
+Params: [15,0]
+
+2025-12-17 13:59:26 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+SQL: INSERT INTO result_request (Result_date, Sv_id, Re_id, Aj_id) VALUES (:Result_date, :Sv_id, :Re_id, :Aj_id)
+Params: {"Result_date":"2025-12-17","Sv_id":"10","Re_id":69,"Aj_id":1}
+
+2026-01-06 11:36:05 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+SQL: INSERT INTO type (Type_infor, Type_icon) VALUES (?, ?)
+Params: ["\u0e40\u0e23\u0e48\u0e07\u0e14\u0e48\u0e27\u0e19","\ud83d\udd25"]
+
+2026-01-06 11:36:57 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+SQL: INSERT INTO type (Type_infor, Type_icon) VALUES (?, ?)
+Params: ["\u0e40\u0e23\u0e48\u0e07\u0e14\u0e48\u0e27\u0e19","\ud83d\udd25"]
+
+2026-01-06 12:15:59 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+SQL: INSERT INTO result_request (Result_date, Sv_id, Re_id, Aj_id) VALUES (:Result_date, :Sv_id, :Re_id, :Aj_id)
+Params: {"Result_date":"2026-01-06","Sv_id":"11","Re_id":69,"Aj_id":1}
+
+2026-01-06 12:23:32 - Database Error: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'PRIMARY'
+SQL: INSERT INTO result_request (Result_date, Sv_id, Re_id, Aj_id) VALUES (:Result_date, :Sv_id, :Re_id, :Aj_id)
+Params: {"Result_date":"2026-01-06","Sv_id":"1000","Re_id":69,"Aj_id":1}
+

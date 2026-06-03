@@ -1,0 +1,124 @@
+2025-07-31 21:27:40 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [2]
+
+2025-07-31 22:32:00 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-07-31 22:33:59 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [2]
+
+2025-08-04 11:26:14 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-08-25 17:09:10 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-08-26 12:59:26 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-08-26 13:16:42 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [2]
+
+2025-08-31 18:21:52 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-09-05 14:59:56 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [2]
+
+2025-09-07 16:56:54 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-09-08 12:12:54 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [2]
+
+2025-09-08 17:25:24 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-09-08 17:27:44 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [1]
+
+2025-09-08 17:41:36 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-09-09 14:40:34 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-09-09 22:25:35 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-09-10 00:57:07 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-09-10 00:59:01 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310057-6"]
+
+2025-09-10 01:16:30 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-09-25 14:43:36 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-11-20 12:25:07 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-11-20 12:29:52 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-11-20 13:07:29 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-11-20 13:09:32 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310001-1"]
+
+2025-11-30 15:43:59 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-12-01 12:11:23 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-12-01 16:31:52 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-12-01 16:32:04 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: ["66342310092-2"]
+
+2025-12-01 17:08:54 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-12-02 14:46:27 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+
+2025-12-02 16:37:59 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.users' doesn't exist
+SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
+Params: [3]
+

@@ -2,7 +2,7 @@
 define('SECURE_ACCESS', true);
 require_once 'config/config.php';
 require_once 'config/database.php';
-require_once 'includes/functions.php';
+require_once 'core/functions.php';
 
 // ฟังก์ชัน helper สำหรับ footer (ทำงานโดยไม่ต้อง login)
 function isLoggedIn()
@@ -1555,7 +1555,7 @@ function getFileDownloadUrl($filePath, $fileName)
         }
     </script>
 
-    <?php include 'includes/footer.php'; ?>
+    <?php include 'views/layouts/footer.php'; ?>
 </body>
 
 </html>

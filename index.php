@@ -58,8 +58,8 @@ $user = $isLoggedIn ? [
 function createSecureUrl($path)
 {
     global $isLoggedIn;
-    if (!$isLoggedIn && !in_array($path, ['tracking.php', 'students/register.php', 'students/login.php'])) {
-        return 'students/login.php?redirect=' . urlencode($path);
+    if (!$isLoggedIn && !in_array($path, ['tracking.php', 'views/students/register.php', 'views/students/login.php'])) {
+        return 'views/students/login.php?redirect=' . urlencode($path);
     }
     return $path;
 }
@@ -337,8 +337,8 @@ $announcements = [
             </div>
         <?php else: ?>
             <div class="auth-buttons">
-                <a href="students/register.php" class="auth-btn register">ลงทะเบียนนักศึกษา</a>
-                <a href="students/login.php" class="auth-btn login">เข้าสู่ระบบ</a>
+                <a href="views/students/register.php" class="auth-btn register">ลงทะเบียนนักศึกษา</a>
+                <a href="views/students/login.php" class="auth-btn login">เข้าสู่ระบบ</a>
             </div>
         <?php endif; ?>
     </nav>
@@ -374,7 +374,7 @@ $announcements = [
                 <div style="margin-bottom: 25px; font-size: 1.2rem; color: rgba(255,255,255,0.9); font-weight: 300;">
                     📝 พบปัญหาหรือต้องการเสนอแนะ? แจ้งเราได้ทันที
                 </div>
-                <a href="<?php echo createSecureUrl('students/complaint.php'); ?>" class="btn-main">
+                <a href="<?php echo createSecureUrl('views/students/complaint.php'); ?>" class="btn-main">
                     ส่งข้อร้องเรียน
                 </a>
             </div>

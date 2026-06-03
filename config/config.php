@@ -8,11 +8,10 @@ if (!defined('SECURE_ACCESS')) {
 date_default_timezone_set('Asia/Bangkok');
 
 // ข้อมูลการเชื่อมต่อฐานข้อมูล
-// ข้อมูลการเชื่อมต่อฐานข้อมูล
-define('DB_HOST', 'sql113.infinityfree.com'); // แก้ตรงนี้
-define('DB_NAME', 'if0_40673385_complaint_system'); // แก้ตรงนี้
-define('DB_USER', 'if0_40673385'); // แก้ตรงนี้
-define('DB_PASS', 'CYCLWuk6XRQ7TEo'); // 4. รหัสผ่าน vPanel ที่คุณจดไว้
+define('DB_HOST', 'localhost'); // แก้ตรงนี้
+define('DB_NAME', 'complaint_system'); // แก้ตรงนี้ (หรือชื่อฐานข้อมูลใน local ของคุณ)
+define('DB_USER', 'root'); // แก้ตรงนี้
+define('DB_PASS', ''); // 4. รหัสผ่าน XAMPP ปกติคือว่างเปล่า
 define('DB_CHARSET', 'utf8mb4');
 
 // ข้อมูลเว็บไซต์

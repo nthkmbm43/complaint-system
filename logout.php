@@ -2,7 +2,7 @@
 define('SECURE_ACCESS', true);
 require_once 'config/config.php';
 require_once 'config/database.php';
-require_once 'includes/auth.php';
+require_once 'models/Auth.php';
 
 // เริ่ม session หากยังไม่ได้เริ่ม
 if (session_status() === PHP_SESSION_NONE) {
@@ -63,25 +63,41 @@ header("Expires: 0");
     <title>ออกจากระบบ - <?php echo SITE_NAME; ?></title>
     <link rel="stylesheet" href="assets/css/main.css">
     <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+        }
+
         .logout-container {
             max-width: 500px;
-            margin: 20px auto;
+            width: 100%;
+            margin: 0 auto;
             text-align: center;
             padding: 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .logout-icon {
             font-size: 4rem;
             margin-bottom: 20px;
-            color: #28a745;
+            filter: drop-shadow(0 4px 10px rgba(72, 201, 176, 0.4));
         }
 
         .logout-message {
             font-size: 1.2rem;
-            color: #333;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 30px;
             line-height: 1.6;
         }
@@ -94,12 +110,13 @@ header("Expires: 0");
         }
 
         .countdown {
-            background: #f8f9fa;
+            background: rgba(0, 0, 0, 0.2);
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin: 20px 0;
-            color: #666;
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .loading-animation {
@@ -130,17 +147,26 @@ header("Expires: 0");
         }
         
         .btn {
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: 12px;
             text-decoration: none;
             color: white;
             transition: 0.3s;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
         }
-        .btn-primary { background-color: #007bff; }
-        .btn-success { background-color: #28a745; }
-        .btn-warning { background-color: #ffc107; color: #000; }
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        .btn-primary { background: linear-gradient(45deg, #6C63FF, #48C9B0); border: none; box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3); }
+        .btn-primary:hover { box-shadow: 0 8px 25px rgba(108, 99, 255, 0.5); transform: translateY(-2px); }
+        
+        .btn-success { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .btn-success:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); }
+        
+        .btn-warning { background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); color: #ffc107; }
+        .btn-warning:hover { background: rgba(255, 193, 7, 0.2); transform: translateY(-2px); }
     </style>
 
     <style>
@@ -172,12 +198,12 @@ header("Expires: 0");
                     🏠 กลับหน้าหลัก
                 </a>
                 
-                <a href="students/login.php" class="btn btn-success">
+                <a href="views/students/login.php" class="btn btn-success">
                     👨‍🎓 เข้าสู่ระบบนักศึกษา
                 </a>
 
-                <?php if ($userRole !== 'student') : ?>
-                    <a href="staff/login.php" class="btn btn-warning">
+                <?php if (in_array($userRole, ['teacher', 'staff', 'admin'])) : ?>
+                    <a href="views/staff/login.php" class="btn btn-warning">
                         👨‍🏫 เข้าสู่ระบบเจ้าหน้าที่
                     </a>
                 <?php endif; ?>

@@ -122,3 +122,7 @@ Params: [3]
 SQL: UPDATE users SET updated_at = CURRENT_TIMESTAMP WHERE id = ?
 Params: [3]
 
+2026-06-03 12:05:46 - Database Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'complaint_system.request_complaints' doesn't exist
+SQL: SELECT Re_id, Re_title, Re_date, Stu_id FROM request_complaints ORDER BY Re_date DESC LIMIT 5
+Params: []
+
